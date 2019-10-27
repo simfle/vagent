@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration status="WARN" shutdownHook="disable" package = "com.chyun.epp.core.log">
+    <Properties>
+
+    </Properties>
+    <appenders>
+        <Console name ="console_log" target ="SYSTEM_OUT">
+            <EncodingPatternLayout pattern ="$mst"/>
+        </Console>
+    </appenders>
+    <loggers>
+        <root level="trace" additivity="false">
+            <appender-ref ref="console_log"/>
+        </root>
+    </loggers>
+</Configuration>

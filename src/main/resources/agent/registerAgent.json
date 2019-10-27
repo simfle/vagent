@@ -1,0 +1,10 @@
+[
+  {
+    "session_key": "agent1_session_key",
+    "node_id": "agent1_node_id"
+  },
+  {
+    "session_key": "agent2_session_key",
+    "node_id": "agent2_node_id"
+  }
+]

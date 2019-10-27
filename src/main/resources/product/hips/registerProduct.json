@@ -1,0 +1,16 @@
+{
+  "agent": [
+    {
+      "auth": {
+        "session_key": "hips1_session_key",
+        "node_id": "hips1_node_id"
+      }
+    },
+    {
+      "auth": {
+        "session_key": "hips2_session_key",
+        "node_id": "hips2_node_id"
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "agent": [
+    {
+      "auth": {
+        "session_key": "ac1_session_key",
+        "node_id": "ac1_node_id"
+      }
+    },
+    {
+      "auth": {
+        "session_key": "ac2_session_key",
+        "node_id": "ac2_node_id"
+      }
+    }
+  ]
+}

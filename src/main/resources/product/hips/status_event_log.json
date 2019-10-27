@@ -1,0 +1,13 @@
+{
+  "action": "status_eventAC",
+  "revision": "status_revisionAC",
+  "params": [
+    "status_parmsac1",
+    "status_paramsac2",
+    "status_paramsac3"
+  ],
+  "data": [
+    "status_dataac1",
+    "status_dataac2"
+  ]
+}
