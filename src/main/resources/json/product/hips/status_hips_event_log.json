@@ -1,0 +1,13 @@
+{
+  "action": "execute_eventHIPS",
+  "revision": "execute_revisionHIPS",
+  "params": [
+    "execute_parmsHips1",
+    "execute_paramsacHips",
+    "execute_paramsacHips3"
+  ],
+  "data": [
+    "execute_dataHips1",
+    "execute_dataHips2"
+  ]
+}

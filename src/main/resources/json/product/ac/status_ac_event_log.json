@@ -1,0 +1,22 @@
+{
+  "action": "action_status",
+  "revision": "1",
+  "params": [
+    "status_nodeId",
+    "status_hash",
+    "status_nodeId"
+  ],
+  "data": [
+    {
+      "client_time": {
+        "$date": "2017-06-30T16:04:14.421Z"
+      },
+      "integrity_scan_time": "2017-06-30T16:04:14.421Z",
+      "mode_begin_time": "2017-06-30T16:04:14.421Z",
+      "mode_end_time": "2017-06-30T16:04:14.421Z",
+      "execute_date": "2017-06-30T16:04:14.421Z",
+      "running_mode": "LOCKDOWN"
+    }
+  ]
+}
+

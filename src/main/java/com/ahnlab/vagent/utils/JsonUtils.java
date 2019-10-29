@@ -1,43 +1,48 @@
 package com.ahnlab.vagent.utils;
 
-import com.ahnlab.vagent.model.AgentInfo;
-import com.ahnlab.vagent.task.AbstractTask;
+import com.ahnlab.vagent.agent.Agent;
+import com.ahnlab.vagent.task.EventLogTask;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class JsonUtils {
     private static final Logger LOGGER = LogManager.getLogger(JsonUtils.class);
 
-    public static List<AgentInfo> generateBaseDataAgentInfo(String filePath) {
+    public static List<Agent.AgentAuth> generateBaseDataAgentAuth(String filePath) {
         ObjectMapper objectMapper = new ObjectMapper();
-        List<AgentInfo> agentInfoList = new ArrayList<>();
+        List<Agent.AgentAuth> agentAuthList = new ArrayList<>();
         try {
             ClassLoader classLoader = JsonUtils.class.getClassLoader();
-            agentInfoList = objectMapper.readValue(new File(classLoader.getResource(filePath).getFile()), new TypeReference<List<AgentInfo>>() {
+            agentAuthList = objectMapper.readValue(new File(classLoader.getResource(filePath).getFile()), new TypeReference<List<Agent.AgentAuth>>() {
             });
-            LOGGER.info("## AgentBaseData : {}", agentInfoList);
+            /*InputStream inputStream = new FileInputStream(filePath);
+            agentAuthList = objectMapper.readValue(inputStream, new TypeReference<List<Agent.AgentAuth>>() {
+
+            });*/
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return agentInfoList;
+        return agentAuthList;
     }
 
-    public static AbstractTask.RequestVO generateJsonData(String filePath) {
+    public static EventLogTask.TaskActionVO.ActionData generateJsonData(String filePath) {
         ObjectMapper objectMapper = new ObjectMapper();
-        AbstractTask.RequestVO agentRequestVO = null;
+        EventLogTask.TaskActionVO.ActionData actionData = null;
         try {
             ClassLoader classLoader = JsonUtils.class.getClassLoader();
-            agentRequestVO = objectMapper.readValue(new File(classLoader.getResource(filePath).getFile()), AbstractTask.RequestVO.class);
+            actionData = objectMapper.readValue(new File(classLoader.getResource(filePath).getFile()), EventLogTask.TaskActionVO.ActionData.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return agentRequestVO;
+        return actionData;
     }
 }
