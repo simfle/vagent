@@ -2,16 +2,37 @@ package com.ahnlab.vagent.product;
 
 import com.ahnlab.vagent.agent.Agent;
 import com.ahnlab.vagent.agent.AgentTask;
-import com.ahnlab.vagent.task.EventLogTask;
+import com.ahnlab.vagent.service.WorkerService;
+import com.ahnlab.vagent.task.ProductTask;
+import lombok.Getter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public abstract class Product {
+public class Product {
 
     protected static final Logger LOGGER = LogManager.getLogger(Product.class);
+
+    @Getter
+    private  Agent agent;
+
+    @Getter
+    private ProductTask[]  productTasks;
+
+    private WorkerService workerService;
+
+    public enum Type {
+        AC, HIPS
+    }
+    public Product(Agent agent, ProductTask[] productTasks){
+        this.agent = agent;
+        this.productTasks = productTasks;
+        this.workerService = new WorkerService(this);
+    }
+
+    public void execute() {
+        workerService.execute();
+    }
+
 
     protected ProductType productType;
     private Mode mode;
@@ -35,21 +56,7 @@ public abstract class Product {
 
     public void taskRun(Agent agent) {
         for (AgentTask agentTask : this.productType.getAgentTasks()) {
-            agentTask.getEventLogTask().execute(agent, agentTask.getTaskData());
+            agentTask.getTask().execute(agent, agentTask.getTaskData());
         }
     }
-
-    public static Product createAC() {
-        ProductAC product = new ProductAC();
-        product.productType = ProductType.AC;
-        return product;
-    }
-
-    public static Product createHips() {
-        ProductHips product = new ProductHips();
-        product.productType = ProductType.HIPS;
-        return product;
-    }
-
-    public abstract Product updateMode();
 }

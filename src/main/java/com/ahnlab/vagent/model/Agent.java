@@ -37,7 +37,8 @@ public class Agent implements Runnable {
 
 
 
-    @Override
+    //
+    /*@Override
     public void run() {
         while (runProcessing) {
             String reservation = LocalTime.of(16, 48, 00).format(DateTimeFormatter.ofPattern("HH:mm:ss"));
@@ -53,7 +54,7 @@ public class Agent implements Runnable {
                 }
             }
         }
-    }
+    }*/
 
     public void executeProduct() {
         for (Product product : productList) {
@@ -61,15 +62,15 @@ public class Agent implements Runnable {
         }
     }
 
-//    @Override
-//    public void run() {
-//        while (runProcessing) {
-//            try {
-//                Thread.sleep(2000);
-//                executeProduct();
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
+    @Override
+    public void run() {
+        while (runProcessing) {
+            try {
+                Thread.sleep(2000);
+                executeProduct();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }
