@@ -1,7 +1,7 @@
-package com.ahnlab.vagent.product;
+package com.ahnlab.vagent.base;
 
-import com.ahnlab.vagent.agent.Agent;
-import com.ahnlab.vagent.task.ProductTask;
+import com.ahnlab.vagent.model.Agent;
+import com.ahnlab.vagent.model.Product;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
