@@ -13,7 +13,7 @@ public class TaskVO {
     private Agent.Auth auth = new Agent.Auth();
 
     @JsonProperty("request")
-    private TaskDataVO.ActionData actionData = new TaskDataVO.ActionData();
+    private WorkerVO.ActionData actionData = new WorkerVO.ActionData();
 
     public String toJsonString(){
         ObjectMapper objectMapper = new ObjectMapper();

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 @Data
-public class TaskDataVO {
+public class WorkerVO {
 
     private List<ActionData> actionDataList = new ArrayList<>();
 

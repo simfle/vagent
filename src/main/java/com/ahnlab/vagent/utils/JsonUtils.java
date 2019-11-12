@@ -1,8 +1,7 @@
 package com.ahnlab.vagent.utils;
 
 import com.ahnlab.vagent.model.Agent;
-import com.ahnlab.vagent.model.Task;
-import com.ahnlab.vagent.vo.TaskDataVO;
+import com.ahnlab.vagent.vo.WorkerVO;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
@@ -33,12 +32,12 @@ public class JsonUtils {
         return agentAuthList;
     }
 
-    public static TaskDataVO generateTaskDataVO(String filePath) {
+    public static WorkerVO generateWorkerVO(String filePath) {
         ObjectMapper objectMapper = new ObjectMapper();
-        TaskDataVO actionData = null;
+        WorkerVO actionData = null;
         try {
             ClassLoader classLoader = JsonUtils.class.getClassLoader();
-            actionData = objectMapper.readValue(new File(classLoader.getResource(filePath).getFile()), TaskDataVO.class);
+            actionData = objectMapper.readValue(new File(classLoader.getResource(filePath).getFile()), WorkerVO.class);
         } catch (IOException e) {
             e.printStackTrace();
         }

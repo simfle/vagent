@@ -13,7 +13,6 @@ import java.util.Map;
 public class Agent implements Runnable {
 
     private static final Logger LOGGER = LogManager.getLogger(Agent.class);
-    private static boolean runProcessing = true;
     private Auth auth;
     private Map<Product.Type, Product> productMap = new HashMap<>();
 
@@ -26,8 +25,10 @@ public class Agent implements Runnable {
 
     @Data
     public static class Auth {
+
         @JsonProperty("session_key")
         private String sessionKey;
+
         @JsonProperty("node_id")
         private String nodeId;
     }

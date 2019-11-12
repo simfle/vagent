@@ -62,14 +62,17 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${basedir}/target/json</outputDirectory>
+                            <outputDirectory>${basedir}/target/config</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>src/main/resources/json</directory>
+                                    <directory>src/main/resources</directory>
                                     <filtering>true</filtering>
                                     <includes>
-                                        <include>**/*.json</include>
+                                        <include>**/*.*</include>
                                     </includes>
+                                    <excludes>
+                                        <exclude>**/config.properties</exclude>
+                                    </excludes>
                                 </resource>
                             </resources>
                         </configuration>
@@ -77,6 +80,12 @@
                 </executions>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
     </build>
     <properties>
         <version.junit>4.12</version.junit>
