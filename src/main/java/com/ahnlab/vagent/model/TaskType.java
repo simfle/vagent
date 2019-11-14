@@ -1,25 +1,15 @@
-package com.ahnlab.vagent.base;
+package com.ahnlab.vagent.model;
 
-import com.ahnlab.vagent.model.Task;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @Getter
 @RequiredArgsConstructor
-public enum ProductTask {
+public enum TaskType {
 
-    AGENT_REGISTER(new Task(), TaskData.AGENT_REGISTER),
-
-    //AC
-    AGENT_EVENT_LOG_AC(new Task(), TaskData.AC_AGENT_EVENT),
-    EXECUTE_EVENT_LOG_AC(new Task(), TaskData.AC_EXECUTE_EVENT),
-    //ACCESS_EVENT_LOG_AC(new Task(new TaskVO(), "https://172.21.30.219:8804", TaskData.AGENT_REGISTER)),
-    //STATUS_EVENT_LOG_AC(new Task(new TaskVO(), "https://172.21.30.219:8804", TaskData.AGENT_REGISTER)),
-
-    //HIPS
-    AGENT_EVENT_LOG_HIPS(new Task(), TaskData.HIPS_AGENT_EVENT);
-    //STATUS_EVENT_LOG_HIPS(new Task(new TaskVO(), "https://172.21.30.219:8804", TaskData.AGENT_REGISTER));
-
+    AGENT_REGISTER(new TaskData[]{TaskData.AGENT_REGISTER}),
+    AC_EVENT_LOG(new TaskData[]{TaskData.AC_AGENT_EVENT, TaskData.AC_EXECUTE_EVENT, TaskData.AC_ACCESS_EVENT, TaskData.AC_STATUS_EVENT}),
+    HIPS_EVENT_LOG(new TaskData[]{TaskData.HIPS_AGENT_EVENT, TaskData.HIPS_FW_EVENT, TaskData.HIPS_IPS_DETECT_EVENT, TaskData.HIPS_STATUS_EVENT});
 
     @Getter
     @RequiredArgsConstructor
@@ -41,6 +31,5 @@ public enum ProductTask {
         private final String filePath;
     }
 
-    private final Task eventLogTask;
-    private final TaskData taskData;
+    private final TaskData[] taskData;
 }

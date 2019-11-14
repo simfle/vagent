@@ -1,6 +1,5 @@
 package com.ahnlab.vagent.model;
 
-import com.ahnlab.vagent.base.ProductFactory;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.apache.logging.log4j.LogManager;

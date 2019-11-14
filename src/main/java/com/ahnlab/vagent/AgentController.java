@@ -1,29 +1,52 @@
 package com.ahnlab.vagent;
 
-import com.ahnlab.vagent.base.PropertyManager;
+import com.ahnlab.vagent.base.RuntimeProperties;
 import com.ahnlab.vagent.service.AgentService;
-import com.ahnlab.vagent.service.BatchService;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.Properties;
 
 @RequiredArgsConstructor
 public class AgentController {
+
     private final AgentService agentService;
+    private Properties runtimeProperties = RuntimeProperties.getInstance();
 
-    public void register() {
-        this.agentService.register();
-    }
-
-    public void execute() {
+    private void execute() {
         this.agentService.execute();
     }
 
     public static void main(String[] args) {
         AgentController agentController = new AgentController(new AgentService());
-        BatchService batchService = new BatchService(agentController);
-        batchService.start();
+        AgentController.ControllerExecutor controllerExecutor = agentController.new ControllerExecutor();
+        controllerExecutor.start();
 
-        PropertyManager propertyManager = new PropertyManager(agentController);
-        Thread thread = new Thread(propertyManager);
-        thread.start();
+//        ResourceManager resourceManager = new ResourceManager(agentController);
+//        Thread thread = new Thread(resourceManager);
+//        thread.start();
+    }
+
+    @Data
+    @RequiredArgsConstructor
+    private class ControllerExecutor {
+        private final Logger LOGGER = LogManager.getLogger(ControllerExecutor.class);
+        private boolean runProcessing = true;
+
+        void start() {
+            new Thread(() -> {
+                while (runProcessing) {
+                    int period = Integer.parseInt(runtimeProperties.getProperty("controller.executor.period"));
+                    try {
+                        Thread.sleep(period);
+                        execute();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
     }
 }
