@@ -2,7 +2,6 @@ package com.ahnlab.vagent.utils;
 
 import com.ahnlab.vagent.model.Agent;
 import com.ahnlab.vagent.model.Worker;
-import com.ahnlab.vagent.vo.WorkerVO;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;

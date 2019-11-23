@@ -18,9 +18,9 @@ public class ProductFactory {
 
     private ProductFactory(Agent agent, Product.Type productType) {
         if (Product.Type.AC == productType) {
-            product = new Product(agent, TaskType.AC_EVENT_LOG);
+            product = new Product(agent, Task.Action.AC_EVENT_LOG);
         } else if (Product.Type.HIPS == productType) {
-            product = new Product(agent, TaskType.HIPS_EVENT_LOG);
+            product = new Product(agent, Task.Action.HIPS_EVENT_LOG);
         }
         createWorker();
     }

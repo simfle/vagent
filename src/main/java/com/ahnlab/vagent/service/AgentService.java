@@ -26,7 +26,7 @@ public class AgentService {
             this.agentList.clear();
         }
         String configPath = agentProperties.getProperty("vagent.config.path");
-        List<Agent.Auth> authList = JsonUtils.generateBaseDataAgentAuth(String.format("%s%s", configPath, TaskType.AGENT_REGISTER.getTaskData().getFilePath()));
+        List<Agent.Auth> authList = JsonUtils.generateBaseDataAgentAuth(String.format("%s%s", configPath, TaskType.AGENT_REGISTER.getTaskData()[0].getFilePath()));
         for (Agent.Auth auth : authList) {
             Agent agent = new Agent(auth);
             this.agentList.add(agent);
