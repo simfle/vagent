@@ -1,16 +1,15 @@
 package com.ahnlab.vagent.listener;
 
-public class PropertiesListener implements ResourceManager.ResourceListener {
+import com.ahnlab.vagent.base.RuntimeProperties;
 
-    private ResourceManager resourceManager;
+public class PropertiesListener implements ResourceManager.AbstractListener {
 
-    public PropertiesListener(ResourceManager resourceManager) {
-        this.resourceManager = resourceManager;
-        resourceManager.addResourceListener(this);
-    }
+    private RuntimeProperties runtimeProperties = RuntimeProperties.getInstance();
+
+    public PropertiesListener() { ResourceManager.addListener(this);}
 
     @Override
     public void update() {
-
+        runtimeProperties.update();
     }
 }

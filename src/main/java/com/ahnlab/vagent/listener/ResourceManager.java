@@ -14,22 +14,21 @@ import java.util.Properties;
 @RequiredArgsConstructor
 public class ResourceManager {
 
-    private List<ResourceListener> resourceListeners = new ArrayList<>();
-    private static boolean runProcession = true;
+    private static boolean runProcessing = true;
     private Properties runtimeProperties = RuntimeProperties.getInstance();
-    private boolean runProcessing = true;
+    private final static List<AbstractListener> ABSTRACT_LISTENERS = new ArrayList<>();
 
-    public interface ResourceListener {
+    public static void addListener(AbstractListener abstractListener) {
+        ABSTRACT_LISTENERS.add(abstractListener);
+    }
+
+    public interface AbstractListener {
         void update();
     }
 
-    public void addResourceListener(ResourceListener resourceListener) {
-        this.resourceListeners.add(resourceListener);
-    }
-
     private void notifyListener() {
-        for (ResourceListener resourceListener : resourceListeners) {
-            resourceListener.update();
+        for (AbstractListener abstractListener : ABSTRACT_LISTENERS) {
+            abstractListener.update();
         }
     }
 

@@ -1,14 +1,15 @@
 package com.ahnlab.vagent.utils;
 
 import com.ahnlab.vagent.model.Agent;
-import com.ahnlab.vagent.model.Worker;
+import com.ahnlab.vagent.vo.TaskJsonVO;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,28 +20,27 @@ public class JsonUtils {
         ObjectMapper objectMapper = new ObjectMapper();
         List<Agent.Auth> agentAuthList = new ArrayList<>();
         try {
-            ClassLoader classLoader = JsonUtils.class.getClassLoader();
-            agentAuthList = objectMapper.readValue(new File(classLoader.getResource(filePath).getFile()), new TypeReference<List<Agent.Auth>>() {
+            InputStream inputStream = new FileInputStream(filePath);
+            agentAuthList = objectMapper.readValue(inputStream, new TypeReference<List<Agent.Auth>>() {
             });
-            /*InputStream inputStream = new FileInputStream(filePath);
-            agentAuthList = objectMapper.readValue(inputStream, new TypeReference<List<Agent.AgentAuth>>() {
-
-            });*/
         } catch (IOException e) {
             e.printStackTrace();
         }
         return agentAuthList;
     }
 
-    public static Worker.WorkerVO generateWorkerVO(String filePath) {
+    public static TaskJsonVO generateWorkerVO(String filePath) {
+        TaskJsonVO workerVO = new TaskJsonVO();
         ObjectMapper objectMapper = new ObjectMapper();
-        Worker.WorkerVO actionData = null;
+        List<TaskJsonVO.ActionData> authList = new ArrayList<>();
         try {
-            ClassLoader classLoader = JsonUtils.class.getClassLoader();
-            actionData = objectMapper.readValue(new File(classLoader.getResource(filePath).getFile()), Worker.WorkerVO.class);
+            InputStream inputStream = new FileInputStream(filePath);
+            authList = objectMapper.readValue(inputStream, new TypeReference<List<TaskJsonVO.ActionData>>() {
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return actionData;
+        workerVO.setActionDataList(authList);
+        return workerVO;
     }
 }

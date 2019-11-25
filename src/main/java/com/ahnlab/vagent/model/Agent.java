@@ -13,13 +13,10 @@ public class Agent implements Runnable {
 
     private static final Logger LOGGER = LogManager.getLogger(Agent.class);
     private Auth auth;
-    private Map<Product.Type, Product> productMap = new HashMap<>();
-
+    private Map<Product.Type, Product> products = new HashMap<>();
 
     public Agent(Auth auth) {
         this.auth = auth;
-        this.productMap.put(Product.Type.AC, ProductFactory.getProduct(this, Product.Type.AC));
-        this.productMap.put(Product.Type.HIPS, ProductFactory.getProduct(this, Product.Type.HIPS));
     }
 
     @Data
@@ -34,7 +31,7 @@ public class Agent implements Runnable {
 
     @Override
     public void run() {
-        for (Product product : productMap.values()) {
+        for (Product product : products.values()) {
             product.execute();
         }
     }

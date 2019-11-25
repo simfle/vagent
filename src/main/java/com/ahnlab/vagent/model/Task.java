@@ -68,7 +68,7 @@ public class Task implements Runnable {
         }
 
         count++;
-        //LOGGER.info("EventLogTaskExecute Execute {}", reqVO.getActionData());
+        LOGGER.info("Task JsonVO {}", reqVO.getActionData());
         //ServerUtils.sendServer(String.format("%s%s", hostUrl, taskData.getUrl()), taskActionVO.toJsonString());
     }
 }
