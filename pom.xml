@@ -121,7 +121,7 @@
     </build>
     <properties>
         <version.junit>4.12</version.junit>
-        <version.log4j2>2.8.2</version.log4j2>
+        <version.log4j2>2.15.0</version.log4j2>
         <version.jackson-core>2.8.9</version.jackson-core>
         <version.jackson-databind>2.8.9</version.jackson-databind>
         <version.jackson-dataformat>2.8.9</version.jackson-dataformat>
